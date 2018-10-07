@@ -1,0 +1,48 @@
+server:
+  port: 8082
+  servlet:
+    contextPath: /secure
+
+spring:
+  ############# Datasource related configuration ###########
+  datasource:
+    initialization-mode: always
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+      minimum-idle: 1
+      maximum-pool-size: 12
+      connection-timeout: 20000
+      maximum-idle: 5
+      idle-timeout: 300000
+      max-lifetime: 1200000
+    driver-class-name: com.mysql.jdbc.Driver
+    jdbc-url: jdbc:mysql://${DATABASE_HOST}:3306/${DATABASE_NAME}?useSSL=false
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  ###################### REDIS ########################
+  cache:
+    type: redis
+    redis:
+      cache-null-values: false
+      time-to-live: 600
+      use-key-prefix: true
+  redis:
+    host: ${REDIS_HOST}
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 7
+        max-idle: 7
+        min-idle: 2
+        max-wait: -1ms
+        shutdown-timeout: 200ms
+
+
+
+
+
+

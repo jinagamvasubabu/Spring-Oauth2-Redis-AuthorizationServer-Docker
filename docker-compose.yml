@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  mysqldb:
+    image: mysql:5.7
+    container_name: mysqldb
+    ports:
+      - "3306:3306"
+    networks:
+      - local-network
+    environment:
+     - MYSQL_ROOT_PASSWORD=babuvasu19
+     - MYSQL_DATABASE=secure
+  redisdb:
+    image: redis:4.0.11
+    ports:
+      - "6379:6379"
+    networks:
+      - local-network
+  secure:
+    build: .
+    depends_on:
+      - mysqldb
+    networks:
+      - local-network
+    ports:
+      - 8082:8082
+    environment:
+      - DATABASE_HOST=mysqldb
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=babuvasu19
+      - DATABASE_NAME=secure
+      - REDIS_HOST=redisdb
+networks:
+  local-network:
+    driver: bridge
