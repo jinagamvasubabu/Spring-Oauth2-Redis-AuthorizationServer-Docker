@@ -8,6 +8,10 @@ Implemented Authorization server using Spring boot and Oauth2 AutoConfigure.
 * `Docker compatable`, just execute startup.sh to start the APP. (Simplified Start)
 * Bonus Endpoint to update the ClientSecret or Password 
 
+## How to run?
+* Execute the startup.sh file in [ResourceServer](https://github.com/jinagamvasubabu/Spring-Oauth2-Redis-ResourceServer-Docker) which inturn creates a `spring-oauth2-redis-resourceserver-docker_resource-server:latest` image
+* Execute the startup.sh file in [AuthorizationServer](https://github.com/jinagamvasubabu/Spring-Oauth2-Redis-AuthorizationServer-Docker)
+
 ## Sample Curl Requests:
 
 ### Auth token generation (grant-type: client_credentials):

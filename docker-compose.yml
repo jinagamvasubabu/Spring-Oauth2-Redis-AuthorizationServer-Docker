@@ -17,8 +17,9 @@ services:
       - "6379:6379"
     networks:
       - local-network
-  secure:
+  authorization_server:
     build: .
+    container_name: authorizationServer
     depends_on:
       - mysqldb
     networks:
@@ -31,6 +32,17 @@ services:
       - DATABASE_PASSWORD=babuvasu19
       - DATABASE_NAME=secure
       - REDIS_HOST=redisdb
+  resource_server:
+    image: spring-oauth2-redis-resourceserver-docker_resource-server:latest
+    container_name: resourceServer
+    ports:
+      - "8083:8083"
+    depends_on:
+      - authorization_server
+    networks:
+      - local-network
+    environment:
+      - AUTHSERVER_IP=authorization_server
 networks:
   local-network:
     driver: bridge
