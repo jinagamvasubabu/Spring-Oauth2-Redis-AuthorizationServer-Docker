@@ -62,7 +62,8 @@ curl -X POST \
   -F newPassword=user
   ```
   
-  
+  ## Credits:
+  https://github.com/Akourtiim/oauth2-spring-boot-2.0.2
 
 
 
