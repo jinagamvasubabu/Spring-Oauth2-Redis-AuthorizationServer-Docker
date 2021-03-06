@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-oraclejdk8:slim
+FROM  openjdk:8
 EXPOSE 8081 8081
 LABEL maintainer="vasubabu"
 ADD ["target/AuthorizationServer*.jar", "AuthorizationServer.jar"]
